@@ -1,3 +1,5 @@
+// import jdk.tools.jlink.internal.SymLinkResourcePoolEntry;
+
 // import javax.management.ListenerNotFoundException;
 
 // import jdk.jfr.Unsigned;
@@ -17,12 +19,12 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null)
-            return null;
+        System.exit(0);
         int m1 = 0;
-
+        
         int count1 = 0;
         int count2 = 0;
-        ListNode temp = l1;
+        ListNode l3, l4,temp = l1;
         while (temp != null) {
 
             count1++;
@@ -36,7 +38,6 @@ class Solution {
             temp = temp.next;
 
         }
-        ListNode l3, l4;
         if (count1 > count2) {
             l3 = l1;
             l4 = l2;
@@ -46,20 +47,26 @@ class Solution {
         }
         int sum = 0;
         temp = l4;
-        while (temp != null) {
+        l2=l3;
+        int count=0;
+        while (temp != null||l3!=null) {
+            sum = 0;
+            m1=0;
+            if(count++<=count1 && count<=count2)
             m1 = temp.val + l3.val;
             if (m1 > 9) {
-                sum = m1 % 10;
-                m1 /= 10;
+                sum =m1/ 10;
+                m1 = m1 % 10;
             }
             l3.val = m1;
             l3 = l3.next;
+            if(l3!=null)
             l3.val += sum;
             temp = temp.next;
-            sum = 0;
+
         }
 
-        return l3;
+        return l2;
     }
 }
 
